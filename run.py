@@ -1,24 +1,34 @@
 import uvicorn
+from fastapi import HTTPException
 
-from app import logger
-from test_app import test_main_route
+from test_app import test_db_route
+from utils.env import get_env
+from utils.logger import logger
 
 
-async def run_server():
+async def _run_server():
     try:
+        await get_env()
+    except Exception as e:
+        logger.error(f"An error occurred when get env variables | {e}")
+        raise HTTPException(status_code=500, detail=f"An error occurred when get env variables | {e}")
+
+    try:
+        from test_app import test_main_route
+
         await test_main_route()
+
+        await test_db_route()
         logger.info("The application test has been successfully executed")
     except Exception as e:
         logger.error(f"An error occurred when running tests | {e}")
+        raise HTTPException(status_code=500, detail=f"An error occurred when running tests | {e}")
 
     uvicorn_cmd = "app:app"
-    uvicorn.run(uvicorn_cmd, host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(uvicorn_cmd, host="127.0.0.1", port=8001, reload=True)
 
 
 if __name__ == "__main__":
-    try:
-        import asyncio
+    import asyncio
 
-        asyncio.run(run_server())
-    except Exception as e:
-        logger.error(f"An error occurred when starting the server | {e}")
+    asyncio.run(_run_server())

@@ -9,6 +9,9 @@ __pycache__/
 # Idea
 .idea
 
+# Mongo Data
+mongodb_data
+
 # Distribution / packaging
 .Python
 build/
