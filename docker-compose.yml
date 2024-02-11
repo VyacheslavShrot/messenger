@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+  messenger:
+    image: vyacheslavshrot/messenger:latest
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    volumes:
+      - ./apis:/messenger/apis
+      - ./utils:/messenger/utils
+      - ./run.py:/messenger/run.py
+      - ./app.py:/messenger/app.py
+      - ./test_app.py:/messenger/test_app.py
+    ports:
+      - "8001:8001"
+
   mongo:
     image: mongo
     container_name: mongodb
