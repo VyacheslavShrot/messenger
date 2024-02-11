@@ -1,18 +1,23 @@
-async def create_chat_handler(users_collection, messages_collection, user_a_username, user_b_username):
+async def create_chat_handler(users_collection, chat_collection, user_a_username, user_b_username):
+    error = True
+
     existing_user_b = await users_collection.find_one({"username": user_b_username})
     if not existing_user_b:
-        return {"error": "There is no such user with such username"}
+        return {"error": "There is no such user with such username"}, error
 
-    existing_chat = await messages_collection.find_one({
+    if user_a_username == user_b_username:
+        return {"error": "Can't create a chat room with yourself"}, error
+
+    existing_chat = await chat_collection.find_one({
         "$or": [
             {"user_a_username": user_a_username, "user_b_username": user_b_username},
             {"user_a_username": user_b_username, "user_b_username": user_a_username}
         ]
     })
     if existing_chat:
-        return {"error": "Chat between these users already exists"}
+        return {"error": "Chat between these users already exists"}, error
 
-    result = await messages_collection.insert_one(
+    result = await chat_collection.insert_one(
         {
             "user_a_username": user_a_username,
             "user_b_username": user_b_username,
@@ -29,4 +34,6 @@ async def create_chat_handler(users_collection, messages_collection, user_a_user
         {"$addToSet": {"chats": user_a_username}}
     )
 
-    return str(result.inserted_id)
+    error = False
+
+    return str(result.inserted_id), error

@@ -12,7 +12,7 @@ async def get_db():
         auth_source = os.environ.get("MONGO_DB_AUTH_SOURCE")
 
         client = motor_asyncio.AsyncIOMotorClient(
-            "localhost", 27017,
+            "mongo", 27017,
             username=username,
             password=password,
             authSource=auth_source

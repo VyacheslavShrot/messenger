@@ -25,7 +25,7 @@ async def _run_server():
         raise HTTPException(status_code=500, detail=f"An error occurred when running tests | {e}")
 
     uvicorn_cmd = "app:app"
-    uvicorn.run(uvicorn_cmd, host="127.0.0.1", port=8001, reload=True)
+    uvicorn.run(uvicorn_cmd, host="0.0.0.0", port=8001, reload=True)
 
 
 if __name__ == "__main__":

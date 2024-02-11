@@ -9,7 +9,7 @@ from utils.mongodb import get_db
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 120
 
 
 async def create_access_token(data: dict, expires_delta: timedelta):
