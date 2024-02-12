@@ -2,11 +2,12 @@ import uvicorn
 from fastapi import HTTPException
 
 from test_app import test_db_route
-# from utils.env import get_env
 from utils.logger import logger
 
 
 async def _run_server():
+    # todo FOR LOCAL LAUNCH
+    # from utils.env import get_env
     # try:
     #     await get_env()
     # except Exception as e:
