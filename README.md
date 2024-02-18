@@ -1,4 +1,4 @@
-# Messenger [![CI/CD](https://github.com/VyacheslavShrot/messenger/actions/workflows/ci_cd.yml/badge.svg)](https://github.com/VyacheslavShrot/messenger/actions/workflows/ci_cd.yml)
+# Messenger [![CI/CD](https://github.com/VyacheslavShrot/messenger/actions/workflows/ci_cd.yml/badge.svg)](https://github.com/VyacheslavShrot/messenger/actions/workflows/ci_cd.yml)  ![Pulls](https://img.shields.io/docker/pulls/vyacheslavshrot/messenger) 
 
 - The part of the backend that describes the basic functionality of the messenger<br><br>
 - I have described in detail how to use the APIs of this project in the <strong>Postman documentation</strong> :
