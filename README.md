@@ -55,7 +55,11 @@
         - <strong>ME_CONFIG_MONGODB_ADMINPASSWORD</strong> ( use the same data as for image mongo )<br><br>
         - <strong>ME_CONFIG_MONGODB_SERVER=mongo</strong><br><br>
 
-- After installing the environment, we run <strong>docker-compose up -d</strong><br><br>
+- After installing the environment, we run
+```
+docker-compose up -d
+```
+<br>
 
 - Go to the <strong>mongo-admin panel</strong> ( mongo-express container ):
     - Create the base <strong>messenger</strong><br><br>
